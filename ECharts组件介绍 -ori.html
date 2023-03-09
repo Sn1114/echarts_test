@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<div id="main" style="width:1000px;height:700px;background-color: aliceblue;margin:auto"></div>
+		<script type="text/javascript">
+			var myCharts = echarts.init(document.getElementById("main"));
+			
+			var option = {
+				title: {
+					text: '各种蔬菜的销量',
+					textStyle: {
+						color:'pink',
+					},
+					borderWidth: 2,
+                    borderColor: '#40E0D0',
+					borderRadius: 10,
+					left:50,   //top,right,left,bottom
+				},
+				tooltip: {
+					trigger: 'axis', //axis,item
+                    triggerOn: 'mousemove',//click,mousemove
+					//formatter:'{a}hhhh<br/>{b}:{c}',
+					//formatter: function (arg) {
+					//		console.log(arg);
+					//	return arg[0].name + arg[0].seriesName + '的销量是' + arg[0].value;
+					//               },
+					axisPointer: {
+						type:'shadow',
+                    },
+				},
+				toolbox: {
+					orient:'vertical',  //horizontal,vertical
+					right: 10,
+					top:100,
+					feature: {
+						saveAsImage: {},
+						restore: {},
+						dataView: {
+							readOnly:true,
+						},
+						dataZoom: {},
+						magicType: {
+							type:['line','bar','stack'],
+						},
+                    }
+				},
+				legend: {
+					data: [
+						{
+							name: '土豆',
+							icon: 'roundrect',
+						},
+						{
+							name: '玉米',
+                            icon:'roundrect',
+						},
+					],
+                    orient: 'horizontal',//vertical,horizontal
+					right:50,
+				},
+				dataZoom: [
+					{
+						type: 'inside',//slider,inside
+						xAxisIndex: 0,
+					},
+                    {
+                        type: 'inside',//slider,inside
+						yAxisIndex: 0,
+						//start: 50,
+						//end: 80,
+						//right:50,
+					},
+				],
+				grid: {
+					show: true,
+					borderWidth:0,//网格
+					width: 800,
+					height: 500,
+					top:100, //top,bottom,left,right
+                },
+			  xAxis: {
+				type: 'category',
+				data: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],		
+				name:'日期',
+				nameLocation:'end',
+				nameGap:20,
+				
+				axisLine:{
+					show:true,
+					symbol:['none','arrow'],//箭头
+					symbolSize:[8,8],
+					symbolOffset:[0,7],
+					lineStyle:{
+                        color:'#40E0D0 ',
+						width:2,
+						type:'solid',
+					}
+				  },
+				//坐标轴刻度设置
+				axisTick: {
+					show: true,
+					inside: true,
+					alignWithLabel: false,
+					length: 5,
+					lineStyle: {
+                        color: '#40E0D0',
+						width: 2,
+						type:'solid',
+					}
+				  },
+				//坐标轴标签设置
+				  axisLabel: {
+					  show: true,
+					  inside: false,
+                      color: 'black',
+					  rotate: 60,
+					  margin:10,
+				  },
+				
+			  },
+			  yAxis: {
+				type: 'value',
+				
+				
+				axisLine:{
+					show:true,
+					symbol:['none','arrow'],//箭头
+					symbolSize: [8, 8],
+					symbolOffset:[0,7],
+					lineStyle:{
+                        color:'#40E0D0',
+						width:2,
+						type:'solid',
+					}
+				}
+			  },
+			  series: [
+				{
+					  name:'土豆',
+                      data: [120, 200, { value: 150, itemStyle: { color:'#FF4500'},}, 80, 70, 110, 130],
+					  color:'#FFB6C1',
+					  type: 'bar',
+					  label:{
+				 		  show:true,
+				 		  position:'top',
+					},
+				    barWidth:30,
+				   itemStyle:{
+				 	  borderRadius:[10,10,0,0],
+				   },
+				  },
+                  {
+                      name: '玉米',
+                      data: [80, 40, 120, 140, 60, 100, 150],
+                      color: '#FFDEAD',
+                      type: 'bar',
+                       label:{
+                       	  show:true,
+                       	  position:'top',
+                       },
+                       barWidth:30,
+                       itemStyle:{
+                       	  borderRadius:[10,10,0,0],
+                       },
+                  },
+			  ]
+			};
+			
+			myCharts.setOption(option);
+		</script>
+		
+	</body>
+</html>
